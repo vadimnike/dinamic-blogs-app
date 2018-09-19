@@ -2,12 +2,6 @@
 
 var gulp = require('gulp');
 
-// js variables
-var concat  = require('gulp-concat');
-var watch   = require('gulp-watch');
-var iconfont = require('gulp-iconfont');
-var iconfontTemplate = require('gulp-iconfont-template');
-var iconfontCss = require('gulp-iconfont-css');
 
 // scss variables
 var sass = require('gulp-sass');
@@ -23,67 +17,6 @@ var paths = {
   scss     : ['./src/markup/scss/**/*.scss']
 };
 
-
-var font = {
-  fontName: 'iconFont',
-  template: './src/markup/templates/iconFontTemplate.scss',
-  fontPath: '../fonts/icon-font/',
-  targetPath: '../../scss/layouts/_icon.scss'
-};
-
-gulp.task('iconfont', function(){
-  return gulp.src(['./src/markup/img/svg-icons/*.svg'])
-    .pipe(iconfontTemplate({
-      fontName: font.fontName,
-      path: './src/markup/templates/fontMapTemplate.html',
-      fontPath: font.fontPath,
-      targetPath: '../../html/template.html',
-      cssClass: 'ic'
-    }))
-    .on('finish', function(){
-      console.log('=========================');
-      console.log('FINISH: generate FONT MAP is complete');
-      console.log('=========================');
-    })
-    .on('error', function(){
-      console.log('=========================');
-      console.log('ERROR: Cant generate FONT MAP');
-      console.log('=========================');
-    })
-    .pipe(iconfontCss({
-      fontName: font.fontName,
-      path: font.template,
-      targetPath: font.targetPath,
-      fontPath: font.fontPath,
-      cssClass: 'ic'
-    }))
-    .on('error', function(e){
-      console.log('=========================');
-      console.log('ERROR: Cant generate SCSS styles');
-      console.log('=========================');
-    })
-    .on('finish', function(e){
-      console.log('=========================');
-      console.log('FINISH: generate SCSS styles is complete');
-      console.log('=========================');
-    })
-    .pipe(iconfont({
-      fontName: font.fontName,
-      formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'],
-      normalize:true,
-      fontHeight: 1001
-    })).on('finish', function(e){
-      console.log('=========================');
-      console.log('FINISH: generate SVG to font is complete');
-      console.log('=========================');
-    })
-    .on('error', function(){
-      console.log('=========================');
-      console.log('ERROR: Cant generate SVG to font');
-      console.log('=========================');
-    })
-    .pipe(gulp.dest('src/markup/fonts/icon-font'));
-});
 
 gulp.task('scss', function () {
   return gulp.src(paths.scss)
