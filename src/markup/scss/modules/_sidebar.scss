@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100%;
+  padding: 20px;
+  background-color: #2B2F3E;
+
+  .title {
+    color: $white;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    color: #808080;
+  }
+    
+  .title, .subtitle {
+    font-weight: 400;
+  }
+}
+
