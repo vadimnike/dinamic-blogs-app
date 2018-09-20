@@ -7,7 +7,6 @@ const persistedState = loadState();
 const store = createStore(rootReducer, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 store.subscribe(()=>{
-  console.log('store.getState() ', store.getState());
   saveState({
     blogs: store.getState().blogs,
     comments: store.getState().comments
